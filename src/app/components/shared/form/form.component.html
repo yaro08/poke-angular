@@ -1,0 +1,125 @@
+  <form [formGroup]="fg" (ngSubmit)="submit()" #forma="ngForm" novalidate="novalidate">  
+  
+    <div>
+      <div class="form-group row" >
+        <label class="col-2 col-form-label">Nombre<b>*</b></label>
+        <div class="col-8">
+          
+          <input [ngClass]="{'is-invalid': fg.get('name').invalid && fg.get('name').touched}"
+                 name="name"
+                 class="form-control"
+                 type="text"
+                 placeholder="Nombre del pokemon"
+                 formControlName="name">
+          <ng-container *ngIf=" !fg.controls['name'].errors?.pattern">
+              <div  *ngIf="fg.controls['name'].errors?.required"
+                    class="invalid-feedback">
+              El campo es obligatorio.
+              </div>
+              <div  *ngIf="fg.controls['name'].errors?.minlength"
+                  class="invalid-feedback">
+              Al menos 4 caracteres.
+              </div>
+              <div  *ngIf="fg.controls['name'].errors?.maxlength"
+                  class="invalid-feedback">
+              El tope son 24 caracteres.
+              </div>
+          </ng-container>
+          <div  *ngIf="fg.controls['name'].errors?.pattern"
+                class="invalid-feedback">
+            El campo solo puede contener una palabra sin acentos y otros signos.
+          </div>
+        </div>
+      </div>
+  
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Tipo<b>*</b><br><small>Elegir almenos un tipo</small></label> 
+        <div class="col-8" formArrayName="type">
+
+              <select *ngFor="let itemType of fg.controls['type'].controls; let i=index"
+                      [ngClass]="{'is-invalid': fg.get('type').invalid && fg.get('type').touched}"
+                      [formControlName]="i"
+                      class="form-control"
+                      style="margin-bottom: 10px"
+                      name="type">
+
+                  <ng-container *ngFor="let type of listTypes" >
+                      <option  [ngValue]="type">{{type}}</option>
+                  </ng-container> 
+              </select> 
+
+          <button [disabled]='nTypes > 1'
+                  (click)="addType()"
+                  type="button"
+                  class="btn btn-primary">
+            Agregar
+          </button>
+          <button [disabled]='nTypes == 1'
+              (click)="removeType()"
+              type="button"
+              class="btn btn-danger">
+            Eliminar
+          </button>
+          <div  *ngIf="this.fg.controls['type'].controls[1]?.errors?.equals == true"
+                class="invalid-feedback">
+            Los tipos han de ser distintos.
+          </div>
+        </div>
+      </div>
+  
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Se convierte en... <small>opcional</small></label>
+        <div class="col-md-8">
+          <input class="form-control"
+                type="text"
+                placeholder="Un pokemon"
+                name="becomes"
+                formControlName="becomes"
+                >
+        </div>
+      </div>
+  
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Descripción<b>*</b></label>
+        <div class="col-md-8">
+          <textarea [ngClass]="{'is-invalid': fg.get('description')?.invalid && fg.get('description').touched}"
+                    class="form-control"
+                    rows="3"
+                    placeholder="Descripción... almenos 30 carácteres"
+                    name="description"
+                    aria-describedby="descriptionHelpBlock"
+                    formControlName="description"
+                    >
+          </textarea>
+          <small id="descriptionHelpBlock" class="form-text text-muted">
+            La descripción debe tener almenos 30 caracteres, pudiendo contener letras y números. Sin espacios al final o saltos de linea.
+          </small>
+          <div  *ngIf="fg.controls['description'].errors?.required"
+                class="invalid-feedback">
+            El campo es obligatorio.
+          </div>
+          <div  *ngIf="fg.controls['description'].errors?.minlength"
+                class="invalid-feedback">
+            Al menos 30 caracteres.
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="form-group row">
+      <label class="col-2 col-form-label">&nbsp;</label>
+      <div class="input-group col-md-8">        
+        <button [disabled]="forma.invalid"
+                type="submit"
+                class="btn btn-outline-primary">
+          Guardar
+        </button>&nbsp;
+        <a class="btn btn-outline-dark" [routerLink]="[ '/pokemon/list']">Volver atrás</a>
+      </div>
+    </div>
+  
+  </form>
+    <span>(*)Los campos son obligatorios</span>
+    {{forma.valid | json}}
+    {{fg.valid | json}}
+    {{fg.controls['type'].controls[1]?.errors?.equals | json}}

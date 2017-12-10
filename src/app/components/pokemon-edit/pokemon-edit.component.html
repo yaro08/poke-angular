@@ -1,0 +1,16 @@
+<h3>EDITAR POKEMON</h3>
+<hr>
+<ng-container *ngIf="pokemon.name.length > 1" >
+    <pokemon-form
+    [formData]  = "pokemon"
+    (outputData) = "editPokemon($event)">
+    </pokemon-form>
+</ng-container>
+  
+
+  <!-- <app-custom-modal
+    (closedModal) = "modalHidden($event)"
+    [show-modal]  = "showModal">
+  </app-custom-modal> -->
+
+  

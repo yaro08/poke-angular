@@ -1,0 +1,65 @@
+<h3>FICHA DEL POKEMON</h3>
+<hr>
+
+<div class="row">
+  <div class="col-md-4 col-12">
+    <img src="//placehold.it/450x300" class="img-thumbnail float-left" alt="...">
+    <div class="btn-group my-btn-group offset-1" role="group">
+      <a class="btn btn-outline-dark" [routerLink]="[ '/pokemon/list']">Volver atrás</a>
+      <a class="btn btn-outline-warning" [routerLink]="[ '/pokemon/edit', pokemonId ]">Editar</a>
+      <a class="btn btn-outline-danger" (click)="deletePokemon()" >Eliminar</a>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="card" >
+      <div class="card-body">
+          <div class="row">
+            <div class="col-md-9">
+                <h4 class="card-title">{{pokemon.name | uppercase}}</h4>
+            </div>
+            <div class="col-md-3">
+                <button (click)="toggleFav(pokemon)"
+                        [ngClass]="{'btn-warning': pokemon.fav}"
+                        type="button" 
+                        class="btn btn-block btn-sm fav-btn">
+                  <i class="material-icons">star_rate</i>
+                </button>
+            </div>
+          </div>
+        <ng-container *ngIf="pokemon?.becomes">
+          <h6 class="card-subtitle mb-2 text-muted">Evoluciona en: <b>{{pokemon.becomes | uppercase}}</b></h6>
+        </ng-container>
+        <p style="text-align:justify" class="card-text">{{pokemon.description}}</p>
+        <ng-container *ngFor="let type of pokemon.type">
+          <small>{{type | uppercase}}</small>
+        </ng-container>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div  [ngClass]="{'show': showAlert}"
+        class="col-md-12 alert alert-danger alert-dismissible fade my-alert"
+        role="alert">
+
+      <span [innerHTML]="alertMsg"></span>
+
+      <button (click)="hideAlert()"
+              type="button" 
+              class="close"
+              aria-label="Close">
+
+              <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+</div>
+
+
+
+<!-- <button type="button" class="btn btn-outline-primary|secondary|success|danger|warning|info|light|dark" (click)="onClick($event)">
+  Button
+</button> -->

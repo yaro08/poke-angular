@@ -18,7 +18,8 @@ export class PokemonsService {
     ){
         console.log('Pokemons service runs...');
 
-        this.url = 'http://localhost:3800/api/'
+        this.url = 'http://localhost:3800/api/';
+        //this.url = 'http://207.154.247.1:3800/api/';
 
         this.tipos =[
             'Bicho',

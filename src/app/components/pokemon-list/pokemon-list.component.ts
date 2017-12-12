@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, AfterContentInit, ViewEncapsulation } from '@angular/core';
 
 import { PokemonsService, Pokemon } from '../../services/pokemons.service';
+import { SpinnerService } from '../../services/spinner.service';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -17,24 +18,27 @@ export class PokemonListComponent implements OnInit {
   public showAlert: boolean;
   public alertMsg: string;
   
-    constructor(private _pokemonsService:PokemonsService ) {}
+    constructor(private _pokemonsService:PokemonsService,
+                private _spinnerService:SpinnerService
+    ) {}
   
     ngOnInit() {
-     // console.log(this._pokemonsService.pokemonsList);
-      //this.myPokemons = this._pokemonsService.pokemonsList;
+      this.getListPokemons();     
+    }
 
+    public getListPokemons(){
+      this._spinnerService.show(true);
       this._pokemonsService.getPokemons().subscribe(
         result =>{
+          this._spinnerService.show(false);
           if (result['message'] == 'OK') {
             this.pokemons = this.myPokemons = result['result'];
           } else {
-            console.log("an error has ocurred");
+            alert("Error al listar los pokemons");
           }
-          //console.log("pokemons from service");
-          //console.log(result['result']);
         },
         error =>{
-
+          alert("Error en el servidor...");
         }
       );
     }
@@ -46,7 +50,6 @@ export class PokemonListComponent implements OnInit {
         pokemon.fav == true
       );	
     }
-
     public toggleFav(myPokemon:Pokemon){
       this._pokemonsService.toggleFavPokemon(myPokemon._id, myPokemon).subscribe(
         result =>{ 
@@ -60,7 +63,6 @@ export class PokemonListComponent implements OnInit {
         }, error =>{ }
       );
     }
-
     public handleChange(event:MouseEvent,val:string){
       let target = event.target;
       
@@ -72,5 +74,4 @@ export class PokemonListComponent implements OnInit {
         this.pokemons = this.myPokemons;
       }
     }
-
 }

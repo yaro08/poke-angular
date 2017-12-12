@@ -21,7 +21,6 @@ const ROUTES: Routes = [
             { path: '**', pathMatch:'full', redirectTo:'list' }
         ] 
     },
-    // { path: 'pokemon/:id', component: PokemonDetailsComponent },
     { path: 'search/:pokemon', component: PokemonSearchComponent },
     { path: '**', pathMatch:'full', redirectTo:'pokemon' }
 ];

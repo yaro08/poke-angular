@@ -2,7 +2,9 @@
   <div class="col-md-4">
     <h3>MIS POKEMONS</h3>
   </div>
+
   <div class="col-md-8">
+
     <label class="custom-control custom-radio">
       <input (change)="handleChange($event,'all')"
               name="radio" 
@@ -12,6 +14,7 @@
       <span class="custom-control-indicator"></span>
       <span class="custom-control-description">Todos</span>
     </label>
+
     <label class="custom-control custom-radio">
       <input  (change)="handleChange($event,'favs')"
               name="radio" 
@@ -20,11 +23,13 @@
       <span class="custom-control-indicator"></span>
       <span class="custom-control-description">Favoritos</span>
     </label>
+
   </div>
+
 </div>
 <hr>
 
-<div  [ngClass]="{'show': showAlert}"
+<div  [ngClass]="{'show': showAlert, 'notDisplay': !showAlert }"
       class="alert alert-danger alert-dismissible fade "
       role="alert">
   <span [innerHTML]="alertMsg"></span>
@@ -35,17 +40,17 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div> -->
+
+<div  [ngClass]="{'notDisplay': pokemons?.length > 0}"
+      class="alert alert-info alert-dismissible fade show" 
+      role="alert">
+  <span style="font-size:20px;">Todavía no tienes ningún pokemon creado <span class="chars">😱</span></span>
+  <br/><small>Crea uno ahora pinchando<a [routerLink]="[ '/pokemon/new']" > aqui </a></small> 
+</div>
+
 
 <div class="card-columns">
   <div *ngFor="let pokemon of pokemons; let i = index" class="card">
-    <!-- <img class="card-img-top" style="width: 130px" src="../../assets/raikou.svg" alt="Card image cap"> -->
-    <!-- <img class="card-img-top" src="..." alt="Card image cap">       -->
     <div class="card-body">
       <div class="row">
         <div class="col-md-9">
@@ -67,10 +72,9 @@
             <small class="text-muted" [innerHTML]='type'></small>
         </ng-container>
       </p>
-      <!-- <button type="button" class="btn btn-outline-warning btn-block">Favorito</button> -->
-      <a [routerLink]="['/pokemon/details',pokemon._id]" class="btn btn-outline-primary btn-block">Ver detalles...</a>
-      <!-- <button type="button" class="btn btn-outline-primary btn-block">Ver más...</button>  -->
-      
+
+      <a [routerLink]="['/pokemon/details',pokemon._id]" class="btn btn-outline-primary btn-block">Ver detalles...</a>  
+    
     </div>
   </div> 
 </div>

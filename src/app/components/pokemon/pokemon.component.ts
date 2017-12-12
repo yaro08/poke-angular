@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
-// import { PokemonsService, Pokemon } from '../../services/pokemons.service';
-
 
 @Component({
   selector: 'app-pokemon',
@@ -11,13 +9,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class PokemonComponent implements OnInit {
 
-  //public myPokemons:Pokemon[];
-
-  // constructor(private _pokemonsService:PokemonsService ) {}
+  //EN REALIDAD ESTE COMPONENTE ES INNECESARIO...
+  //DEBERIA IR CIERTA LOGICA RELACIONADA CON EL COMPONENTE
 
   ngOnInit() {
-    // console.log(this._pokemonsService.pokemonsList);
-    // this.myPokemons = this._pokemonsService.pokemonsList;
+    console.log("pokemon component");
   }
 
 }

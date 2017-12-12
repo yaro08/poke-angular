@@ -8,11 +8,10 @@
     No se han encontrado coincidencias para esta búsqueda: <b>{{searchText}}</b>
   </div>
 </ng-template>
+
 <ng-template #results>
   <div class="card-columns">
     <div *ngFor="let pokemon of pokemons; let i = index" class="card">
-      <!-- <img class="card-img-top" style="width: 130px" src="../../assets/raikou.svg" alt="Card image cap"> -->
-      <!-- <img class="card-img-top" src="..." alt="Card image cap">       -->
       <div class="card-body">
         <h4 class="card-title" [innerHTML]='pokemon.name'></h4>
         <p class="card-text" [innerHTML]='pokemon.description'></p>
@@ -21,8 +20,7 @@
               <small class="text-muted" [innerHTML]='type'></small>
           </ng-container>
         </p>
-        <a [routerLink]="['/pokemon',i]" class="btn btn-outline-primary btn-block">Ver detalles...</a>
-        <!-- <button type="button" class="btn btn-outline-primary btn-block">Ver más...</button>  -->
+        <a [routerLink]="['/pokemon/details',pokemon._id]" class="btn btn-outline-primary btn-block">Ver detalles...</a>
       </div>
     </div> 
   </div>

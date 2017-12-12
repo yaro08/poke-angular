@@ -9,3 +9,6 @@
 .fav-btn > i{
     width: 25px;
 }
+.notDisplay{
+    display: none;
+}

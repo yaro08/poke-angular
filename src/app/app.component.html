@@ -1,21 +1,8 @@
 <app-navbar></app-navbar>
-  <!-- <h1>
-    Welcome to {{title}}!
-  </h1> -->
+
 <main class="container">
   <router-outlet>
-
-
-     <app-custom-modal
-      [show-modal]  = "showModal"
-      (closedModal) = "onCloseModal($event)">
-    </app-custom-modal>
-    <!-- <app-custom-modal
-      (closedModal) = "modalHidden($event)"
-      [show-modal]  = "showModal">
-    </app-custom-modal> -->
+    
+    <span *ngIf="showLoader" class="loading"></span>
   </router-outlet>
 </main>
-
-
-		<!-- <span *ngIf="showLoader" class="loading"></span> -->

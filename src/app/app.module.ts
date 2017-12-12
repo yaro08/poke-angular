@@ -8,7 +8,7 @@ import { APP_ROUTES } from './app.routes';
 
 //SERVICES
 import { PokemonsService } from './services/pokemons.service';
-import { ModalService } from './services/modal.service';
+import { SpinnerService } from './services/spinner.service';
 
 //COMPONENTS
 import { AppComponent } from './app.component';
@@ -45,8 +45,9 @@ import { FormComponent } from './components/shared/form/form.component';
     HttpClientModule
   ],
   providers: [
-    PokemonsService,
-    ModalService
+    SpinnerService,
+    PokemonsService
+    
   ],
   bootstrap: [AppComponent]
 })

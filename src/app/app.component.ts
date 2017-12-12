@@ -1,27 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit, ChangeDetectorRef } from '@angular/core';
 
-import { ModalService } from './services/modal.service';
-
-import { CustomModalComponent } from './components/shared/custom-modal/custom-modal.component';
+import { SpinnerService } from './services/spinner.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+
+export class AppComponent implements AfterContentInit {
   title = 'app';
-  showModal: boolean;
+  showLoader: boolean;
 
-  constructor(private _modalService: ModalService){}
+  constructor(private _spinnerService: SpinnerService,
+              private cdr: ChangeDetectorRef
+  ){}
 
-  ngOnInit(){
-    this._modalService.status.subscribe((val:boolean)=>{
-      this.showModal = val;
+  ngAfterContentInit(){
+    this._spinnerService.status.subscribe((val:boolean)=>{
+      this.showLoader = val;
+      this.cdr.detectChanges();
     });
-  }
-  onCloseModal($event:MouseEvent){
-    console.log("esto es innecesario...");
   }
 }
 

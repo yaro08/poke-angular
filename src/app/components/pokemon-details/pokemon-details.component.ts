@@ -3,14 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { PokemonsService, Pokemon } from '../../services/pokemons.service';
 
-
-
 @Component({
   selector: 'app-pokemon-details',
   templateUrl: './pokemon-details.component.html',
   styleUrls: ['./pokemon-details.component.css'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class PokemonDetailsComponent implements OnInit {
   public alertMsg: string;
   public showAlert: boolean;
@@ -37,12 +36,11 @@ export class PokemonDetailsComponent implements OnInit {
   public getInfoPokemon(pokemonId:string){
     this._pokemonService.getPokemon(this.pokemonId).subscribe(
       result =>{
-        if (result['message'] == 'OK') {
+        if (result['status'] == 'OK') {
           this.pokemon = result['result'];
         } else {
           alert('Pokemon not found');
-        }
-        
+        }     
       },
       error =>{
         alert('An error has ocurred...');
@@ -65,12 +63,11 @@ export class PokemonDetailsComponent implements OnInit {
         if (result['message']== 'OK') {
           myPokemon.fav = result['result']['fav'];
         } else if(result['message']== 'ERROR') {
-          console.log(result['result']);
           this.showAlert = true;
           this.alertMsg = result['result'];
         }
       }, error =>{
-
+        alert("Ha ocurrido un error en el servidor...");
       }
     );
   }

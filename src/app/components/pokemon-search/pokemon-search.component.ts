@@ -19,7 +19,7 @@ export class PokemonSearchComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params =>{
-      console.log('text to find: '+params.pokemon);
+      //console.log('text to find: '+params.pokemon);
       this.searchText = params.pokemon;
       this.pokemons = this._pokemonsService.findPokemon(params.pokemon);
     });

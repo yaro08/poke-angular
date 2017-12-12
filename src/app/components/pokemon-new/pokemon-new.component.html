@@ -5,10 +5,8 @@
     (outputData) = "newPokemon($event)">
   </pokemon-form>  
 
-
-  <!-- <app-custom-modal
-    (closedModal) = "modalHidden($event)"
-    [show-modal]  = "showModal">
-  </app-custom-modal> -->
-
-  
+  <app-custom-modal
+    [show-modal]  = "showModal"
+    (closedModal) = "modalHidden($event)">
+    <div class="message">{{message}}</div>
+  </app-custom-modal>

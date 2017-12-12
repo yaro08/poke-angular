@@ -1,14 +1,4 @@
-<!-- Button trigger modal -->
-  <!-- <button (click)="show()"
-          type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch modal
-  </button>
-  <button (click)="hide()"
-          type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-      Hide modal
-  </button> -->
-  
-  <!-- Modal -->
+    <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -19,12 +9,13 @@
           </button>
         </div>
         <div class="modal-body">
-          La operación se ha realizado correctamente.
+          <!-- La operación se ha realizado correctamente. -->
+          <ng-content select=".message"></ng-content>
         </div>
         <div class="modal-footer">
-          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
           <button (click)="hide()"
-                  type="button" class="btn btn-primary">Aceptar</button>
+                  type="button" 
+                  class="btn btn-primary">Aceptar</button>
         </div>
       </div>
     </div>

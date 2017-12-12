@@ -15,14 +15,12 @@ export class NavbarComponent implements OnInit {
   }
 
   searchPokemon(text:string){
-    console.log(text);
     //Check if 'text' is not empty
     if (text =='') {
       this.router.navigate(['/pokemon/list'])
     } else {
       this.router.navigate(['/search',text])
     }
-    
   }
 
 }
